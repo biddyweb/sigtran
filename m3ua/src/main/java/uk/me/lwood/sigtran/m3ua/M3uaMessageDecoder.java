@@ -6,6 +6,22 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.oneone.OneToOneDecoder;
 
 /**
+ * Assuming a ChannelBuffer as input (which should be guaranteed by another decoder unwrapping the
+ * M3UA payload), this will parse the bytes in the ChannelBuffer as a {@link M3uaMessage}, by
+ * attempting first to read the header and then the body.
+ * 
+ * <p>This decoder will throw an exception for the following reasons:
+ * <ul>
+ *   <li>If the version field in the header is not "1"</li>
+ *   <li>If there are any problems reading the variable-length parameters, including:
+ *     <ul>
+ *       <li>Trailing bytes at the end of the buffer that are counted in the length, but unaccounted
+ *           for by any parameters</li>
+ *       <li>Parameter length fields that would exceed the size of the passed ChannelBuffer</li>
+ *       <li>Parameter payloads with no trailing padding, when padding is expected</li>
+ *     </ul>
+ *   </li>
+ * </ul>
  * 
  * @author lukew
  */

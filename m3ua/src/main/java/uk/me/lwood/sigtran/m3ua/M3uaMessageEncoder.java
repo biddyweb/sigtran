@@ -10,31 +10,34 @@ import java.util.Map;
 import java.util.SortedMap;
 
 /**
+ * Assuming an {@link M3uaMessage} as input, this encoder will convert the object into a
+ * {@link ChannelBuffer} containing the byte-serialized form of the PDU.
  * 
  * @author lukew
  */
 public class M3uaMessageEncoder extends OneToOneEncoder {
     @Override
     protected Object encode(ChannelHandlerContext ctx, Channel channel, Object msg) throws Exception {
-        if (msg instanceof M3uaMessage) {
-            M3uaMessage m = (M3uaMessage) msg;
-            ChannelBuffer header = ChannelBuffers.dynamicBuffer(8, channel.getConfig().getBufferFactory());
-            encodeHeader(header, m);
-            
-            SortedMap<Integer, ChannelBuffer> content = m.getContent();
-            if (content.isEmpty()) {
-                return header;
-            }
-            else {
-                ChannelBuffer body = ChannelBuffers.dynamicBuffer(16, channel.getConfig().getBufferFactory());
-                encodeBody(body, content);
-                return ChannelBuffers.wrappedBuffer(header, body);
-            }
+        if (!(msg instanceof M3uaMessage))
+            return msg;
+        
+        M3uaMessage m = (M3uaMessage) msg;
+        ChannelBuffer header = ChannelBuffers.dynamicBuffer(8, channel.getConfig().getBufferFactory());
+        encodeHeader(header, m);
+
+        SortedMap<Integer, ChannelBuffer> content = m.getContent();
+        if (content.isEmpty()) {
+            return header;
         }
         
-        return msg;
+        ChannelBuffer body = ChannelBuffers.dynamicBuffer(m.getLength(), channel.getConfig().getBufferFactory());
+        encodeBody(body, content);
+        return ChannelBuffers.wrappedBuffer(header, body);
     }
 
+    /**
+     * Transcode the header information from the {@link M3uaMessage} to the {@link ChannelBuffer}.
+     */
     private void encodeHeader(ChannelBuffer buf, M3uaMessage message) {
         buf.writeByte(message.getVersion());
         buf.writeByte(0);
@@ -43,6 +46,9 @@ public class M3uaMessageEncoder extends OneToOneEncoder {
         buf.writeInt(message.getLength());
     }
     
+    /**
+     * Transcode the body information from the {@link M3uaMessage} to the {@link ChannelBuffer}.
+     */
     private void encodeBody(ChannelBuffer buf, SortedMap<Integer, ChannelBuffer> content) {
         for (Map.Entry<Integer, ChannelBuffer> entry : content.entrySet()) {
             buf.writeShort(entry.getKey());

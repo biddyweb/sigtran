@@ -1,6 +1,8 @@
 package uk.me.lwood.sigtran.m3ua;
 
 /**
+ * An exception specific to the M3UA layer of the stack; exceptions of this type thrown should be
+ * considered fatal for the purposes of ongoing communication.
  * 
  * @author lukew
  */
