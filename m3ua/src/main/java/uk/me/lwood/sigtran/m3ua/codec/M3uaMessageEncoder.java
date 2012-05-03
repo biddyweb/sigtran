@@ -1,4 +1,4 @@
-package uk.me.lwood.sigtran.m3ua;
+package uk.me.lwood.sigtran.m3ua.codec;
 
 import io.netty.buffer.ChannelBuffer;
 import io.netty.buffer.ChannelBuffers;
@@ -8,6 +8,8 @@ import io.netty.handler.codec.oneone.OneToOneEncoder;
 
 import java.util.Map;
 import java.util.SortedMap;
+
+import uk.me.lwood.sigtran.m3ua.M3uaMessage;
 
 /**
  * Assuming an {@link M3uaMessage} as input, this encoder will convert the object into a
