@@ -39,6 +39,9 @@ public class M3uaMessageDecoder extends OneToOneDecoder {
                 throw new M3uaException("Got invalid length field in tag: " + parameterTag);
             
             m3uaMsg.putTagValue(parameterTag, m.readSlice(parameterLength));
+            
+            if (parameterLength % 4 != 0)
+                m.skipBytes(parameterLength % 4);
         }
 
         return msg;

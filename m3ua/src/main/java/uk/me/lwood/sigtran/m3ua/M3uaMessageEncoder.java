@@ -1,5 +1,3 @@
-// $Id$
-// Copyright 2012 MX Telecom Ltd
 package uk.me.lwood.sigtran.m3ua;
 
 import io.netty.buffer.ChannelBuffer;
