@@ -53,6 +53,7 @@
     </properties>
 
     <modules>
+        <module>common</module>
         <module>m3ua</module>
         <module>sccp</module>
         <module>tcap</module>
@@ -63,6 +64,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>uk.me.lwood.sigtran</groupId>
+                <artifactId>sigtran-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-buffer</artifactId>
