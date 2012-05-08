@@ -57,9 +57,7 @@
         <module>m3ua</module>
         <module>sccp</module>
         <module>tcap</module>
-        <module>map-api</module>
-        <module>map-ansi</module>
-        <module>map-etsi</module>
+        <module>map</module>
     </modules>
 
     <dependencyManagement>
