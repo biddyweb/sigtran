@@ -17,7 +17,7 @@ import java.util.SortedMap;
  */
 public class M3uaMessageEncoder extends OneToOneEncoder {
     @Override
-    protected Object encode(ChannelHandlerContext ctx, Channel channel, Object msg) throws Exception {
+    public Object encode(ChannelHandlerContext ctx, Channel channel, Object msg) throws Exception {
         if (!(msg instanceof M3uaMessage))
             return msg;
         
