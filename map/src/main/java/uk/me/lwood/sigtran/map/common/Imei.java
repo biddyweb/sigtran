@@ -1,4 +1,4 @@
-package uk.me.lwood.sigtran.map.api;
+package uk.me.lwood.sigtran.map.common;
 
 /**
  * 
