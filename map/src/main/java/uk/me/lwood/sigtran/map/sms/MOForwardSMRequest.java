@@ -1,6 +1,7 @@
 package uk.me.lwood.sigtran.map.sms;
 
 import uk.me.lwood.sigtran.map.common.Imsi;
+import uk.me.lwood.sigtran.map.common.SignalInfo;
 
 /**
  * 
@@ -9,10 +10,10 @@ import uk.me.lwood.sigtran.map.common.Imsi;
 public class MOForwardSMRequest {
     private final SmRpDa smRpDa;
     private final SmRpOa smRpOa;
-    private final String smRpUi;
+    private final SignalInfo smRpUi;
     private final Imsi imsi;
     
-    public MOForwardSMRequest(SmRpDa smRpDa, SmRpOa smRpOa, String smRpUi, Imsi imsi) {
+    public MOForwardSMRequest(SmRpDa smRpDa, SmRpOa smRpOa, SignalInfo smRpUi, Imsi imsi) {
         this.smRpDa = smRpDa;
         this.smRpOa = smRpOa;
         this.smRpUi = smRpUi;
@@ -27,7 +28,7 @@ public class MOForwardSMRequest {
         return smRpOa;
     }
 
-    public final String getSmRpUi() {
+    public final SignalInfo getSmRpUi() {
         return smRpUi;
     }
 

@@ -6,14 +6,11 @@ package uk.me.lwood.sigtran.map.common;
  */
 public class ExternalSignalInfo {
     private final ProtocolId protocolId;
-    private final String signalInfo;
+    private final SignalInfo signalInfo;
     
-    public ExternalSignalInfo(ProtocolId protocolId, String signalInfo) {
+    public ExternalSignalInfo(ProtocolId protocolId, SignalInfo signalInfo) {
         if (signalInfo == null)
             throw new NullPointerException("signalInfo cannot be null");
-        
-        if (signalInfo.length() < 1 || signalInfo.length() > 200)
-            throw new IllegalArgumentException("signalInfo must be 1 .. 200 characters in length");
         
         this.protocolId = protocolId;
         this.signalInfo = signalInfo;
@@ -23,7 +20,7 @@ public class ExternalSignalInfo {
         return protocolId;
     }
 
-    public final String getSignalInfo() {
+    public final SignalInfo getSignalInfo() {
         return signalInfo;
     }
 }
