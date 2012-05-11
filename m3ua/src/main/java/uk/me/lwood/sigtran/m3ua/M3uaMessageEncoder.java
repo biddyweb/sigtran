@@ -22,7 +22,7 @@ public class M3uaMessageEncoder extends OneToOneEncoder {
             return msg;
         
         M3uaMessage m = (M3uaMessage) msg;
-        ChannelBuffer header = ChannelBuffers.dynamicBuffer(8, channel.getConfig().getBufferFactory());
+        ChannelBuffer header = ChannelBuffers.buffer(8); // , channel.getConfig().getBufferFactory()
         encodeHeader(header, m);
 
         SortedMap<Integer, ChannelBuffer> content = m.getContent();
@@ -30,7 +30,7 @@ public class M3uaMessageEncoder extends OneToOneEncoder {
             return header;
         }
         
-        ChannelBuffer body = ChannelBuffers.dynamicBuffer(m.getLength(), channel.getConfig().getBufferFactory());
+        ChannelBuffer body = ChannelBuffers.dynamicBuffer(m.getLength());
         encodeBody(body, content);
         return ChannelBuffers.wrappedBuffer(header, body);
     }
@@ -57,10 +57,10 @@ public class M3uaMessageEncoder extends OneToOneEncoder {
             if (actualLength % 4 != 0) {
                 octetLength += 4 - actualLength % 4; 
             }
-            buf.writeShort(actualLength);
+            buf.writeShort(actualLength + 4);
             buf.writeBytes(entry.getValue());
             if (octetLength != actualLength) {
-                buf.writeBytes(new byte[actualLength - octetLength]);
+                buf.writeBytes(new byte[octetLength - actualLength]);
             }
         }
     }

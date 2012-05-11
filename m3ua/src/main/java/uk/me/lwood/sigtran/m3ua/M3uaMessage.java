@@ -75,10 +75,10 @@ public final class M3uaMessage {
     }
 
     public int getLength() {
-        int length = 0;
+        int length = 8;
         for (Map.Entry<Integer, ChannelBuffer> entry : content.entrySet()) {
             int oneLength = entry.getValue().readableBytes();
-            length += oneLength;
+            length += oneLength + 4;
             if (oneLength % 4 != 0) {
                 length += 4 - oneLength % 4;
             }
