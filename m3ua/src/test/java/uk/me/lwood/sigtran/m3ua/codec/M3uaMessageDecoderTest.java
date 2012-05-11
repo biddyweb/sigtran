@@ -9,11 +9,11 @@ import java.util.SortedMap;
 
 import org.junit.Test;
 
-import uk.me.lwood.sigtran.m3ua.M3uaException;
 import uk.me.lwood.sigtran.m3ua.M3uaMessage;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageClass;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageDecoder;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageType;
+import uk.me.lwood.sigtran.m3ua.exceptions.M3uaException;
 
 public class M3uaMessageDecoderTest {
     private final M3uaMessageDecoder decoder = new M3uaMessageDecoder();

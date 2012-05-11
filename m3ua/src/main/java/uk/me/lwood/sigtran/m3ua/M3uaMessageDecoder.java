@@ -1,5 +1,8 @@
 package uk.me.lwood.sigtran.m3ua;
 
+import static uk.me.lwood.sigtran.m3ua.exceptions.M3uaExceptionReason.*;
+
+import uk.me.lwood.sigtran.m3ua.exceptions.M3uaException;
 import io.netty.buffer.ChannelBuffer;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -34,7 +37,7 @@ public class M3uaMessageDecoder extends OneToOneDecoder {
         ChannelBuffer m = (ChannelBuffer) msg;
         int version = m.readByte();
         if (version != 0x1) {
-            throw new M3uaException("Unsupported version: " + version);
+            throw new M3uaException(UNSUPPORTED_VERSION, "Unsupported version: " + version);
         }
 
         m.readByte();
@@ -47,13 +50,13 @@ public class M3uaMessageDecoder extends OneToOneDecoder {
         int offset = 0;
         while (offset < length) {
             if (offset + length < 4)
-                throw new M3uaException("Got unexpected trailing " + (length - offset) + " bytes");
+                throw new M3uaException(UNEXPECTED_TRAILING_BYTES, "Got unexpected trailing " + (length - offset) + " bytes");
             
             int parameterTag = m.readShort();
             int parameterLength = m.readShort();
             parameterLength -= 4;
             if (offset + parameterLength > length)
-                throw new M3uaException("Got invalid length field in tag: " + parameterTag);
+                throw new M3uaException(INVALID_LENGTH_FIELD, "Got invalid length field in tag: " + parameterTag);
             
             m3uaMsg.putTagValue(parameterTag, m.readSlice(parameterLength));
             
