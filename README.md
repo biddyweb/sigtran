@@ -13,12 +13,6 @@ Modules
      and embedded directly in another SS7 stack
  * tcap
    - Transaction Capabilities Application Part
- * map-api
-   - A set of interfaces and skeleton framework classes to be used for specifying
-     the behaviour and use of the Mobile Application Part.  Users should use this
-     module, and also include on the classpath either map-ansi or map-etsi to
-     choose which implementation to use
- * map-ansi
-   - The ANSI implementation of MAP
- * map-etsi
-   - The other implementation of MAP
+ * map
+   - A set of classes that can be used in conjunction with an ASN.1 encoder to
+     perform ITU MAP operations

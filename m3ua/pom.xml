@@ -10,6 +10,10 @@
     <artifactId>sigtran-m3ua</artifactId>
     <dependencies>
         <dependency>
+            <groupId>uk.me.lwood.sigtran</groupId>
+            <artifactId>sigtran-common</artifactId>
+        </dependency>
+        <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-buffer</artifactId>
         </dependency>
@@ -20,6 +24,11 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-transport</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
