@@ -8,7 +8,7 @@ import io.netty.buffer.ChannelBuffer;
 import io.netty.buffer.ChannelBuffers;
 import uk.me.lwood.sigtran.m3ua.M3uaMessage;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageClass;
-import uk.me.lwood.sigtran.m3ua.M3uaMessageEncoder;
+import uk.me.lwood.sigtran.m3ua.codec.M3uaMessageEncoder;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageType;
 
 /**

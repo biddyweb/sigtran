@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import uk.me.lwood.sigtran.m3ua.M3uaMessage;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageClass;
-import uk.me.lwood.sigtran.m3ua.M3uaMessageDecoder;
+import uk.me.lwood.sigtran.m3ua.codec.M3uaMessageDecoder;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageType;
 import uk.me.lwood.sigtran.m3ua.exceptions.M3uaException;
 
