@@ -11,6 +11,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>uk.me.lwood.sigtran</groupId>
+            <artifactId>sigtran-tcap</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-buffer</artifactId>
         </dependency>

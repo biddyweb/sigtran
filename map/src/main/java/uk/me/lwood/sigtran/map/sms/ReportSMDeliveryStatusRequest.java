@@ -2,13 +2,14 @@ package uk.me.lwood.sigtran.map.sms;
 
 import uk.me.lwood.sigtran.map.common.AddressString;
 import uk.me.lwood.sigtran.map.common.ISDNAddressString;
+import uk.me.lwood.sigtran.tcap.TcapOperation;
 
 /**
  * XXX: currently has no GPRS support
  * 
  * @author lukew
  */
-public class ReportSMDeliveryStatusRequest {
+public class ReportSMDeliveryStatusRequest implements TcapOperation {
     private final ISDNAddressString msisdn;
     private final AddressString serviceCentreAddress;
     private final SMDeliveryOutcome smDeliveryOutcome;

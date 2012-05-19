@@ -1,10 +1,12 @@
 package uk.me.lwood.sigtran.map.service.location;
 
+import uk.me.lwood.sigtran.tcap.TcapOperation;
+
 /**
  * 
  * @author lukew
  */
-public class PurgeMsResponse {
+public class PurgeMsResponse implements TcapOperation {
     private final boolean freezeTmsi;
     private final boolean freezePTmsi;
     
