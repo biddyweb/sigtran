@@ -2,15 +2,14 @@ package uk.me.lwood.sigtran.m3ua.codec;
 
 import static uk.me.lwood.sigtran.m3ua.exceptions.M3uaExceptionReason.*;
 
-import uk.me.lwood.sigtran.m3ua.exceptions.M3uaException;
 import io.netty.buffer.ChannelBuffer;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.oneone.OneToOneDecoder;
-import uk.me.lwood.sigtran.m3ua.M3uaException;
 import uk.me.lwood.sigtran.m3ua.M3uaMessage;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageClass;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageType;
+import uk.me.lwood.sigtran.m3ua.exceptions.M3uaException;
 
 /**
  * Assuming a ChannelBuffer as input (which should be guaranteed by another decoder unwrapping the
