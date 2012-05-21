@@ -1,13 +1,13 @@
 package uk.me.lwood.sigtran.map.service.location;
 
 import uk.me.lwood.sigtran.map.common.Identity;
-import uk.me.lwood.sigtran.tcap.TcapOperation;
+import uk.me.lwood.sigtran.tcap.TcapArgument;
 
 /**
  * 
  * @author lukew
  */
-public class CancelLocationRequest implements TcapOperation {
+public class CancelLocationRequest implements TcapArgument {
     private final Identity identity;
     private final CancellationType type;
     

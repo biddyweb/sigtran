@@ -1,13 +1,13 @@
 package uk.me.lwood.sigtran.map.location;
 
 import uk.me.lwood.sigtran.map.common.AgeofLocationInformation;
-import uk.me.lwood.sigtran.tcap.TcapOperation;
+import uk.me.lwood.sigtran.tcap.TcapResult;
 
 /**
  * 
  * @author lukew
  */
-public class ProviderSubscriberLocationResponse implements TcapOperation {
+public class ProviderSubscriberLocationResponse implements TcapResult {
     private final ExtGeographicalInformation locationEstimate;
     private final AgeofLocationInformation ageOfLocationEstimate;
     

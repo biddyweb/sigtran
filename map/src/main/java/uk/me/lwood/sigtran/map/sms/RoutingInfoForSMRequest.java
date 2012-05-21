@@ -1,13 +1,13 @@
 package uk.me.lwood.sigtran.map.sms;
 
 import uk.me.lwood.sigtran.map.common.ISDNAddressString;
-import uk.me.lwood.sigtran.tcap.TcapOperation;
+import uk.me.lwood.sigtran.tcap.TcapArgument;
 
 /**
  * 
  * @author lukew
  */
-public class RoutingInfoForSMRequest implements TcapOperation {
+public class RoutingInfoForSMRequest implements TcapArgument {
     private final ISDNAddressString msisdn;
     private final boolean smRpPri;
     private final ISDNAddressString serviceCentre;

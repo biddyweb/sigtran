@@ -1,13 +1,13 @@
 package uk.me.lwood.sigtran.map.sms;
 
 import uk.me.lwood.sigtran.map.common.Imsi;
-import uk.me.lwood.sigtran.tcap.TcapOperation;
+import uk.me.lwood.sigtran.tcap.TcapArgument;
 
 /**
  * 
  * @author lukew
  */
-public class ReadyForSMRequest implements TcapOperation {
+public class ReadyForSMRequest implements TcapArgument {
     private final Imsi imsi;
     private final AlertReason alertReason;
     private final boolean alertReasonIndicator;

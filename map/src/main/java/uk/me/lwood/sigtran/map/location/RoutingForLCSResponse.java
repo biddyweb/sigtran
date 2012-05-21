@@ -1,13 +1,13 @@
 package uk.me.lwood.sigtran.map.location;
 
 import uk.me.lwood.sigtran.map.common.SubscriberIdentity;
-import uk.me.lwood.sigtran.tcap.TcapOperation;
+import uk.me.lwood.sigtran.tcap.TcapResult;
 
 /**
  * 
  * @author lukew
  */
-public class RoutingForLCSResponse implements TcapOperation {
+public class RoutingForLCSResponse implements TcapResult {
     private final SubscriberIdentity targetMS;
     private final LCSLocationInfo lcsLocationInfo;
     

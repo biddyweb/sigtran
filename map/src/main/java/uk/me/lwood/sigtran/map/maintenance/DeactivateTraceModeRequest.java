@@ -1,13 +1,13 @@
 package uk.me.lwood.sigtran.map.maintenance;
 
 import uk.me.lwood.sigtran.map.common.Imsi;
-import uk.me.lwood.sigtran.tcap.TcapOperation;
+import uk.me.lwood.sigtran.tcap.TcapResult;
 
 /**
  * 
  * @author lukew
  */
-public class DeactivateTraceModeRequest implements TcapOperation {
+public class DeactivateTraceModeRequest implements TcapResult {
     private final Imsi imsi;
     private final TraceReference reference;
     

@@ -2,13 +2,13 @@ package uk.me.lwood.sigtran.map.location;
 
 import uk.me.lwood.sigtran.map.common.ISDNAddressString;
 import uk.me.lwood.sigtran.map.common.SubscriberIdentity;
-import uk.me.lwood.sigtran.tcap.TcapOperation;
+import uk.me.lwood.sigtran.tcap.TcapArgument;
 
 /**
  * 
  * @author lukew
  */
-public class RoutingInfoForLCSRequest implements TcapOperation {
+public class RoutingInfoForLCSRequest implements TcapArgument {
     private final ISDNAddressString mlcNumber;
     private final SubscriberIdentity targetMS;
     

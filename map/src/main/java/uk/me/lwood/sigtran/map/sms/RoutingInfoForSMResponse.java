@@ -1,12 +1,13 @@
 package uk.me.lwood.sigtran.map.sms;
 
 import uk.me.lwood.sigtran.map.common.Imsi;
+import uk.me.lwood.sigtran.tcap.TcapResult;
 
 /**
  * 
  * @author lukew
  */
-public class RoutingInfoForSMResponse {
+public class RoutingInfoForSMResponse implements TcapResult {
     private final Imsi imsi;
     private final LocationInfoWithLmsi locationInfo;
     

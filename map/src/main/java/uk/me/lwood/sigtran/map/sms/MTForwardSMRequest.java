@@ -1,13 +1,13 @@
 package uk.me.lwood.sigtran.map.sms;
 
 import uk.me.lwood.sigtran.map.common.SignalInfo;
-import uk.me.lwood.sigtran.tcap.TcapOperation;
+import uk.me.lwood.sigtran.tcap.TcapArgument;
 
 /**
  * 
  * @author lukew
  */
-public class MTForwardSMRequest implements TcapOperation {
+public class MTForwardSMRequest implements TcapArgument {
     private final SmRpDa smRpDa;
     private final SmRpOa smRpOa;
     private final SignalInfo smRpUi;

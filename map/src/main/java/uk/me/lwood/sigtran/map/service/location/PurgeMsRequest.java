@@ -2,13 +2,13 @@ package uk.me.lwood.sigtran.map.service.location;
 
 import uk.me.lwood.sigtran.map.common.ISDNAddressString;
 import uk.me.lwood.sigtran.map.common.Imsi;
-import uk.me.lwood.sigtran.tcap.TcapOperation;
+import uk.me.lwood.sigtran.tcap.TcapArgument;
 
 /**
  * 
  * @author lukew
  */
-public class PurgeMsRequest implements TcapOperation {
+public class PurgeMsRequest implements TcapArgument {
     private final Imsi imsi;
     private final ISDNAddressString vlrNumber;
     private final ISDNAddressString sgsnNumber;

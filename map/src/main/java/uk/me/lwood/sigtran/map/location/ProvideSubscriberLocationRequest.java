@@ -4,13 +4,13 @@ import uk.me.lwood.sigtran.map.common.ISDNAddressString;
 import uk.me.lwood.sigtran.map.common.Imei;
 import uk.me.lwood.sigtran.map.common.Imsi;
 import uk.me.lwood.sigtran.map.common.Lmsi;
-import uk.me.lwood.sigtran.tcap.TcapOperation;
+import uk.me.lwood.sigtran.tcap.TcapArgument;
 
 /**
  * 
  * @author lukew
  */
-public class ProvideSubscriberLocationRequest implements TcapOperation {
+public class ProvideSubscriberLocationRequest implements TcapArgument {
     private final LocationType locationType;
     private final ISDNAddressString mlcNumber;
     private final LCSClientId lcsClientId;
