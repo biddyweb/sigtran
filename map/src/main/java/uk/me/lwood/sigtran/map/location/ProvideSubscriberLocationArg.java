@@ -10,7 +10,7 @@ import uk.me.lwood.sigtran.tcap.TcapArgument;
  * 
  * @author lukew
  */
-public class ProvideSubscriberLocationRequest implements TcapArgument {
+public class ProvideSubscriberLocationArg implements TcapArgument {
     private final LocationType locationType;
     private final ISDNAddressString mlcNumber;
     private final LCSClientId lcsClientId;
@@ -22,7 +22,7 @@ public class ProvideSubscriberLocationRequest implements TcapArgument {
     private final LCSPriority lcsPriority;
     private final LCSQoS lcsQoS;
     
-    public ProvideSubscriberLocationRequest(LocationType locationType, ISDNAddressString mlcNumber,
+    public ProvideSubscriberLocationArg(LocationType locationType, ISDNAddressString mlcNumber,
                                             LCSClientId lcsClientId, boolean privacyOverride, Imsi imsi,
                                             ISDNAddressString msisdn, Lmsi lmsi, Imei imei, LCSPriority lcsPriority,
                                             LCSQoS lcsQoS) {

@@ -8,13 +8,13 @@ import uk.me.lwood.sigtran.tcap.TcapArgument;
  * 
  * @author lukew
  */
-public class ActivateTraceModeRequest implements TcapArgument {
+public class ActivateTraceModeArg implements TcapArgument {
     private final Imsi imsi;
     private final TraceReference reference;
     private final TraceType traceType;
     private final AddressString omcId;
     
-    public ActivateTraceModeRequest(Imsi imsi, TraceReference reference, TraceType traceType, AddressString omcId) {
+    public ActivateTraceModeArg(Imsi imsi, TraceReference reference, TraceType traceType, AddressString omcId) {
         this.imsi = imsi;
         this.reference = reference;
         this.traceType = traceType;

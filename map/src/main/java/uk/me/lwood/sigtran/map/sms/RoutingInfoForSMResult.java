@@ -7,11 +7,11 @@ import uk.me.lwood.sigtran.tcap.TcapResult;
  * 
  * @author lukew
  */
-public class RoutingInfoForSMResponse implements TcapResult {
+public class RoutingInfoForSMResult implements TcapResult {
     private final Imsi imsi;
     private final LocationInfoWithLmsi locationInfo;
     
-    private RoutingInfoForSMResponse(Imsi imsi, LocationInfoWithLmsi locationInfo) {
+    private RoutingInfoForSMResult(Imsi imsi, LocationInfoWithLmsi locationInfo) {
         this.imsi = imsi;
         this.locationInfo = locationInfo;
     }

@@ -8,13 +8,13 @@ import uk.me.lwood.sigtran.tcap.TcapArgument;
  * 
  * @author lukew
  */
-public class MOForwardSMRequest implements TcapArgument {
+public class MOForwardSMArg implements TcapArgument {
     private final SmRpDa smRpDa;
     private final SmRpOa smRpOa;
     private final SignalInfo smRpUi;
     private final Imsi imsi;
     
-    public MOForwardSMRequest(SmRpDa smRpDa, SmRpOa smRpOa, SignalInfo smRpUi, Imsi imsi) {
+    public MOForwardSMArg(SmRpDa smRpDa, SmRpOa smRpOa, SignalInfo smRpUi, Imsi imsi) {
         this.smRpDa = smRpDa;
         this.smRpOa = smRpOa;
         this.smRpUi = smRpUi;

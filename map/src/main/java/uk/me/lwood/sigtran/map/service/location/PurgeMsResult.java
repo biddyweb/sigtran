@@ -6,11 +6,11 @@ import uk.me.lwood.sigtran.tcap.TcapResult;
  * 
  * @author lukew
  */
-public class PurgeMsResponse implements TcapResult {
+public class PurgeMsResult implements TcapResult {
     private final boolean freezeTmsi;
     private final boolean freezePTmsi;
     
-    public PurgeMsResponse(boolean freezeTmsi, boolean freezePTmsi) {
+    public PurgeMsResult(boolean freezeTmsi, boolean freezePTmsi) {
         this.freezeTmsi = freezeTmsi;
         this.freezePTmsi = freezePTmsi;
     }

@@ -9,12 +9,12 @@ import uk.me.lwood.sigtran.tcap.TcapArgument;
  * 
  * @author lukew
  */
-public class ReportSMDeliveryStatusRequest implements TcapArgument {
+public class ReportSMDeliveryStatusArg implements TcapArgument {
     private final ISDNAddressString msisdn;
     private final AddressString serviceCentreAddress;
     private final SMDeliveryOutcome smDeliveryOutcome;
     
-    public ReportSMDeliveryStatusRequest(ISDNAddressString msisdn, AddressString serviceCentreAddress,
+    public ReportSMDeliveryStatusArg(ISDNAddressString msisdn, AddressString serviceCentreAddress,
                                          SMDeliveryOutcome smDeliveryOutcome) {
         this.msisdn = msisdn;
         this.serviceCentreAddress = serviceCentreAddress;

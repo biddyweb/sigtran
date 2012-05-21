@@ -8,12 +8,12 @@ import uk.me.lwood.sigtran.tcap.TcapArgument;
  * 
  * @author lukew
  */
-public class PurgeMsRequest implements TcapArgument {
+public class PurgeMsArg implements TcapArgument {
     private final Imsi imsi;
     private final ISDNAddressString vlrNumber;
     private final ISDNAddressString sgsnNumber;
     
-    public PurgeMsRequest(Imsi imsi, ISDNAddressString vlrNumber, ISDNAddressString sgsnNumber) {
+    public PurgeMsArg(Imsi imsi, ISDNAddressString vlrNumber, ISDNAddressString sgsnNumber) {
         this.imsi = imsi;
         this.vlrNumber = vlrNumber;
         this.sgsnNumber = sgsnNumber;

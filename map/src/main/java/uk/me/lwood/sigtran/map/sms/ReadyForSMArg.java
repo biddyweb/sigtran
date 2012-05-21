@@ -7,12 +7,12 @@ import uk.me.lwood.sigtran.tcap.TcapArgument;
  * 
  * @author lukew
  */
-public class ReadyForSMRequest implements TcapArgument {
+public class ReadyForSMArg implements TcapArgument {
     private final Imsi imsi;
     private final AlertReason alertReason;
     private final boolean alertReasonIndicator;
     
-    public ReadyForSMRequest(Imsi imsi, AlertReason alertReason, boolean alertReasonIndicator) {
+    public ReadyForSMArg(Imsi imsi, AlertReason alertReason, boolean alertReasonIndicator) {
         this.imsi = imsi;
         this.alertReason = alertReason;
         this.alertReasonIndicator = alertReasonIndicator;

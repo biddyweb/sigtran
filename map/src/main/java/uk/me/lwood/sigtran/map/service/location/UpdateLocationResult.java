@@ -7,10 +7,10 @@ import uk.me.lwood.sigtran.tcap.TcapResult;
  * 
  * @author lukew
  */
-public class UpdateLocationResponse implements TcapResult {
+public class UpdateLocationResult implements TcapResult {
     private final ISDNAddressString hlrNumber;
 
-    public UpdateLocationResponse(ISDNAddressString hlrNumber) {
+    public UpdateLocationResult(ISDNAddressString hlrNumber) {
         this.hlrNumber = hlrNumber;
     }
 

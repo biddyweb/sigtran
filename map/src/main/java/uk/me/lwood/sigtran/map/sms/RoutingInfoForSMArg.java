@@ -7,7 +7,7 @@ import uk.me.lwood.sigtran.tcap.TcapArgument;
  * 
  * @author lukew
  */
-public class RoutingInfoForSMRequest implements TcapArgument {
+public class RoutingInfoForSMArg implements TcapArgument {
     private final ISDNAddressString msisdn;
     private final boolean smRpPri;
     private final ISDNAddressString serviceCentre;
@@ -15,7 +15,7 @@ public class RoutingInfoForSMRequest implements TcapArgument {
     private final SmRpMti smRpMti;
     private final SmRpSmea smRpSmea;
     
-    private RoutingInfoForSMRequest(ISDNAddressString msisdn, boolean smRpPri, ISDNAddressString serviceCentre,
+    private RoutingInfoForSMArg(ISDNAddressString msisdn, boolean smRpPri, ISDNAddressString serviceCentre,
                                     boolean gprsSupportIndicator, SmRpMti smRpMti, SmRpSmea smRpSmea) {
         this.msisdn = msisdn;
         this.smRpPri = smRpPri;

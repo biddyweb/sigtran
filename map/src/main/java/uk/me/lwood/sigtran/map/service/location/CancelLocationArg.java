@@ -7,11 +7,11 @@ import uk.me.lwood.sigtran.tcap.TcapArgument;
  * 
  * @author lukew
  */
-public class CancelLocationRequest implements TcapArgument {
+public class CancelLocationArg implements TcapArgument {
     private final Identity identity;
     private final CancellationType type;
     
-    public CancelLocationRequest(Identity identity, CancellationType type) {
+    public CancelLocationArg(Identity identity, CancellationType type) {
         this.identity = identity;
         this.type = type;
     }

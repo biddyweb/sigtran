@@ -8,14 +8,14 @@ import uk.me.lwood.sigtran.map.common.Lmsi;
  * 
  * @author lukew
  */
-public class UpdateLocationRequest {
+public class UpdateLocationArg {
     private final Imsi imsi;
     private final ISDNAddressString mscNumber;
     private final ISDNAddressString vlrNumber;
     private final Lmsi lmsi;
     private final VlrCapability vlrCapability;
     
-    public UpdateLocationRequest(Imsi imsi, ISDNAddressString mscNumber, ISDNAddressString vlrNumber, Lmsi lmsi,
+    public UpdateLocationArg(Imsi imsi, ISDNAddressString mscNumber, ISDNAddressString vlrNumber, Lmsi lmsi,
                                  VlrCapability vlrCapability) {
         this.imsi = imsi;
         this.mscNumber = mscNumber;
