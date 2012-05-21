@@ -1,10 +1,12 @@
 package uk.me.lwood.sigtran.tcap.problems;
 
+import uk.me.lwood.sigtran.tcap.TcapProblem;
+
 /**
  * 
  * @author lukew
  */
-public enum InvokeProblem {
+public enum InvokeProblem implements TcapProblem {
     DUPLICATE_INVOKE_ID,
     UNRECOGNIZED_OPERATION,
     MISTYPED_PARAMETER,

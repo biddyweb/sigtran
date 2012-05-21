@@ -1,6 +1,6 @@
 package uk.me.lwood.sigtran.tcap.ros;
 
-import uk.me.lwood.sigtran.tcap.TcapOperation;
+import uk.me.lwood.sigtran.tcap.TcapArgument;
 
 /**
  * 
@@ -9,12 +9,12 @@ import uk.me.lwood.sigtran.tcap.TcapOperation;
 public class Invoke {
     private final InvokeId invokeId;
     private final InvokeId linkedId;
-    private final TcapOperation operation;
+    private final TcapArgument argument;
     
-    public Invoke(InvokeId invokeId, InvokeId linkedId, TcapOperation operation) {
+    public Invoke(InvokeId invokeId, InvokeId linkedId, TcapArgument operation) {
         this.invokeId = invokeId;
         this.linkedId = linkedId;
-        this.operation = operation;
+        this.argument = operation;
     }
 
     public final InvokeId getInvokeId() {
@@ -25,7 +25,7 @@ public class Invoke {
         return linkedId;
     }
 
-    public final TcapOperation getOperation() {
-        return operation;
+    public final TcapArgument getArgument() {
+        return argument;
     }
 }
