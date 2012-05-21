@@ -7,11 +7,11 @@ import uk.me.lwood.sigtran.tcap.TcapResult;
  * 
  * @author lukew
  */
-public class ProviderSubscriberLocationResult implements TcapResult {
+public class ProvideSubscriberLocationResult implements TcapResult {
     private final ExtGeographicalInformation locationEstimate;
     private final AgeofLocationInformation ageOfLocationEstimate;
     
-    public ProviderSubscriberLocationResult(ExtGeographicalInformation locationEstimate,
+    public ProvideSubscriberLocationResult(ExtGeographicalInformation locationEstimate,
                                               AgeofLocationInformation ageOfLocationEstimate) {
         this.locationEstimate = locationEstimate;
         this.ageOfLocationEstimate = ageOfLocationEstimate;
