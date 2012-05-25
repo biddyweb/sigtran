@@ -1,5 +1,6 @@
 package uk.me.lwood.sigtran.tcap.ros;
 
+import uk.me.lwood.asn1.annotations.Optional;
 import uk.me.lwood.sigtran.tcap.TcapResult;
 
 /**
@@ -8,6 +9,7 @@ import uk.me.lwood.sigtran.tcap.TcapResult;
  */
 public class ReturnResult {
     private final InvokeId invokeId;
+    @Optional
     private final TcapResult result;
     
     private ReturnResult(InvokeId invokeId, TcapResult result) {

@@ -1,5 +1,6 @@
 package uk.me.lwood.sigtran.tcap.ros;
 
+import uk.me.lwood.asn1.annotations.Optional;
 import uk.me.lwood.sigtran.tcap.TcapArgument;
 
 /**
@@ -8,7 +9,9 @@ import uk.me.lwood.sigtran.tcap.TcapArgument;
  */
 public class Invoke {
     private final InvokeId invokeId;
+    @Optional
     private final InvokeId linkedId;
+    @Optional
     private final TcapArgument argument;
     
     public Invoke(InvokeId invokeId, InvokeId linkedId, TcapArgument operation) {

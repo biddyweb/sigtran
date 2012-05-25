@@ -1,5 +1,6 @@
 package uk.me.lwood.sigtran.tcap.messages;
 
+import uk.me.lwood.asn1.annotations.Optional;
 import uk.me.lwood.sigtran.tcap.DestTransactionId;
 import uk.me.lwood.sigtran.tcap.OrigTransactionId;
 import uk.me.lwood.sigtran.tcap.ros.ComponentPortion;
@@ -12,7 +13,9 @@ import uk.me.lwood.sigtran.tcap.ros.DialoguePortion;
 public class Continue {
     private final OrigTransactionId origTransactionId;
     private final DestTransactionId destTransactionId;
+    @Optional
     private final DialoguePortion dialoguePortion;
+    @Optional
     private final ComponentPortion components;
     
     public Continue(OrigTransactionId origTransactionId, DestTransactionId destTransactionId, DialoguePortion dialoguePortion, ComponentPortion components) {

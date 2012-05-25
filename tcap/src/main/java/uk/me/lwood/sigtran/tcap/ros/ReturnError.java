@@ -1,5 +1,6 @@
 package uk.me.lwood.sigtran.tcap.ros;
 
+import uk.me.lwood.asn1.annotations.Optional;
 import uk.me.lwood.sigtran.tcap.TcapError;
 
 /**
@@ -8,6 +9,7 @@ import uk.me.lwood.sigtran.tcap.TcapError;
  */
 public class ReturnError {
     private final InvokeId invokeId;
+    @Optional
     private final TcapError errorCode;
     
     private ReturnError(InvokeId invokeId, TcapError errorCode) {

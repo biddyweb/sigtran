@@ -1,10 +1,12 @@
 package uk.me.lwood.sigtran.tcap.dialogue;
 
+import uk.me.lwood.asn1.Choice;
+
 /**
  * 
  * @author lukew
  */
-public class DialoguePdu {
+public class DialoguePdu implements Choice {
     private final AarqApdu dialogueRequest;
     private final AareApdu dialogueResponse;
     private final AbrtApdu dialogueAbort;
@@ -27,6 +29,7 @@ public class DialoguePdu {
         this.dialogueAbort = dialogueAbort;
     }
     
+    @Override
     public Object getChoice() {
         if (dialogueRequest != null)
             return dialogueRequest;
