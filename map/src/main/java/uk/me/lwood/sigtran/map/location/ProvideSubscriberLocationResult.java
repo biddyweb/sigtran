@@ -1,5 +1,6 @@
 package uk.me.lwood.sigtran.map.location;
 
+import uk.me.lwood.asn1.annotations.Optional;
 import uk.me.lwood.sigtran.map.common.AgeofLocationInformation;
 import uk.me.lwood.sigtran.tcap.TcapResult;
 
@@ -9,6 +10,7 @@ import uk.me.lwood.sigtran.tcap.TcapResult;
  */
 public class ProvideSubscriberLocationResult implements TcapResult {
     private final ExtGeographicalInformation locationEstimate;
+    @Optional
     private final AgeofLocationInformation ageOfLocationEstimate;
     
     public ProvideSubscriberLocationResult(ExtGeographicalInformation locationEstimate,

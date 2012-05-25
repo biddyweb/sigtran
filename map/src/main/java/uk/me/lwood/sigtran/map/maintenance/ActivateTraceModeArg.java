@@ -1,5 +1,6 @@
 package uk.me.lwood.sigtran.map.maintenance;
 
+import uk.me.lwood.asn1.annotations.Optional;
 import uk.me.lwood.sigtran.map.common.AddressString;
 import uk.me.lwood.sigtran.map.common.Imsi;
 import uk.me.lwood.sigtran.tcap.TcapArgument;
@@ -9,9 +10,11 @@ import uk.me.lwood.sigtran.tcap.TcapArgument;
  * @author lukew
  */
 public class ActivateTraceModeArg implements TcapArgument {
+    @Optional
     private final Imsi imsi;
     private final TraceReference reference;
     private final TraceType traceType;
+    @Optional
     private final AddressString omcId;
     
     public ActivateTraceModeArg(Imsi imsi, TraceReference reference, TraceType traceType, AddressString omcId) {

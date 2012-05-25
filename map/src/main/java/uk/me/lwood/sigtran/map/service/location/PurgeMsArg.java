@@ -1,5 +1,6 @@
 package uk.me.lwood.sigtran.map.service.location;
 
+import uk.me.lwood.asn1.annotations.Optional;
 import uk.me.lwood.sigtran.map.common.ISDNAddressString;
 import uk.me.lwood.sigtran.map.common.Imsi;
 import uk.me.lwood.sigtran.tcap.TcapArgument;
@@ -10,7 +11,9 @@ import uk.me.lwood.sigtran.tcap.TcapArgument;
  */
 public class PurgeMsArg implements TcapArgument {
     private final Imsi imsi;
+    @Optional
     private final ISDNAddressString vlrNumber;
+    @Optional
     private final ISDNAddressString sgsnNumber;
     
     public PurgeMsArg(Imsi imsi, ISDNAddressString vlrNumber, ISDNAddressString sgsnNumber) {

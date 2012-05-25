@@ -1,5 +1,8 @@
 package uk.me.lwood.sigtran.map.location;
 
+import uk.me.lwood.asn1.UniversalType;
+import uk.me.lwood.asn1.annotations.Asn1Type;
+import uk.me.lwood.asn1.annotations.Optional;
 import uk.me.lwood.sigtran.map.common.ISDNAddressString;
 import uk.me.lwood.sigtran.map.common.Imei;
 import uk.me.lwood.sigtran.map.common.Imsi;
@@ -13,13 +16,22 @@ import uk.me.lwood.sigtran.tcap.TcapArgument;
 public class ProvideSubscriberLocationArg implements TcapArgument {
     private final LocationType locationType;
     private final ISDNAddressString mlcNumber;
+    @Optional
     private final LCSClientId lcsClientId;
+    @Optional
+    @Asn1Type(UniversalType.NULL)
     private final boolean privacyOverride;
+    @Optional
     private final Imsi imsi;
+    @Optional
     private final ISDNAddressString msisdn;
+    @Optional
     private final Lmsi lmsi;
+    @Optional
     private final Imei imei;
+    @Optional
     private final LCSPriority lcsPriority;
+    @Optional
     private final LCSQoS lcsQoS;
     
     public ProvideSubscriberLocationArg(LocationType locationType, ISDNAddressString mlcNumber,

@@ -1,5 +1,6 @@
 package uk.me.lwood.sigtran.map.sms;
 
+import uk.me.lwood.asn1.annotations.Optional;
 import uk.me.lwood.sigtran.map.common.Imsi;
 import uk.me.lwood.sigtran.map.common.SignalInfo;
 import uk.me.lwood.sigtran.tcap.TcapArgument;
@@ -12,6 +13,7 @@ public class MOForwardSMArg implements TcapArgument {
     private final SmRpDa smRpDa;
     private final SmRpOa smRpOa;
     private final SignalInfo smRpUi;
+    @Optional
     private final Imsi imsi;
     
     public MOForwardSMArg(SmRpDa smRpDa, SmRpOa smRpOa, SignalInfo smRpUi, Imsi imsi) {

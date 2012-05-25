@@ -1,5 +1,6 @@
 package uk.me.lwood.sigtran.map.service.location;
 
+import uk.me.lwood.asn1.annotations.Optional;
 import uk.me.lwood.sigtran.map.common.ISDNAddressString;
 import uk.me.lwood.sigtran.map.common.Imsi;
 import uk.me.lwood.sigtran.map.common.Lmsi;
@@ -14,6 +15,7 @@ public class UpdateLocationArg implements TcapArgument {
     private final ISDNAddressString mscNumber;
     private final ISDNAddressString vlrNumber;
     private final Lmsi lmsi;
+    @Optional
     private final VlrCapability vlrCapability;
     
     public UpdateLocationArg(Imsi imsi, ISDNAddressString mscNumber, ISDNAddressString vlrNumber, Lmsi lmsi,

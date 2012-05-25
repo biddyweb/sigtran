@@ -1,13 +1,19 @@
 package uk.me.lwood.sigtran.map.location;
 
+import uk.me.lwood.asn1.annotations.Optional;
+
 /**
  * 
  * @author lukew
  */
 public class LCSQoS {
+    @Optional
     private final HorizontalAccuracy horizontalAccuracy;
+    @Optional
     private final boolean verticalCoordinateRequest;
+    @Optional
     private final VerticalAccuracy verticalAccuracy;
+    @Optional
     private final ResponseTime responseTime;
     
     public LCSQoS(HorizontalAccuracy horizontalAccuracy, boolean verticalCoordinateRequest,

@@ -1,5 +1,6 @@
 package uk.me.lwood.sigtran.map.location;
 
+import uk.me.lwood.asn1.annotations.Optional;
 import uk.me.lwood.sigtran.map.common.ISDNAddressString;
 import uk.me.lwood.sigtran.map.common.Lmsi;
 
@@ -9,6 +10,7 @@ import uk.me.lwood.sigtran.map.common.Lmsi;
  */
 public class LCSLocationInfo {
     private final ISDNAddressString mscNumber;
+    @Optional
     private final Lmsi lmsi;
     
     public LCSLocationInfo(ISDNAddressString mscNumber, Lmsi lmsi) {
