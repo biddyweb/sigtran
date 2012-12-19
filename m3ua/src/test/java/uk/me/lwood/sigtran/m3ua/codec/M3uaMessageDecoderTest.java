@@ -2,8 +2,9 @@ package uk.me.lwood.sigtran.m3ua.codec;
 
 import static org.junit.Assert.*;
 
-import io.netty.buffer.ChannelBuffer;
-import io.netty.buffer.ChannelBuffers;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.socket.SctpMessage;
 
 import java.util.SortedMap;
 
@@ -11,15 +12,13 @@ import org.junit.Test;
 
 import uk.me.lwood.sigtran.m3ua.M3uaMessage;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageClass;
-import uk.me.lwood.sigtran.m3ua.codec.M3uaMessageDecoder;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageType;
-import uk.me.lwood.sigtran.m3ua.exceptions.M3uaException;
 
 public class M3uaMessageDecoderTest {
     private final M3uaMessageDecoder decoder = new M3uaMessageDecoder();
 
     @Test
-    public void decodeValidTransfer() throws M3uaException {
+    public void decodeValidTransfer() throws Exception {
         short[] encodedForm = {
             0x01, 0x00, 0x01, 0x01, 0x00, 0x00, 0x00, 0xe0, 0x02, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x02,
             0x02, 0x10, 0x00, 0xcd, 0x00, 0x00, 0x04, 0xa8, 0x00, 0x00, 0x02, 0x82, 0x03, 0x02, 0x00, 0x06,
@@ -36,15 +35,15 @@ public class M3uaMessageDecoderTest {
             0x17, 0xab, 0x05, 0x85, 0x31, 0x62, 0x2c, 0x96, 0x83, 0x15, 0x67, 0xc5, 0x9b, 0x70, 0x96, 0x93,
             0xc1, 0x6a, 0xb7, 0x9a, 0x31, 0x58, 0x0b, 0xd2, 0x72, 0x45, 0x5c, 0x2e, 0x08, 0x00, 0x00, 0x00,
         };
-        ChannelBuffer buf = ChannelBuffers.buffer(encodedForm.length);
+        ByteBuf buf = Unpooled.buffer(encodedForm.length);
         for (short s : encodedForm) {
             buf.writeByte(s);
         }
         
-        M3uaMessage msg = (M3uaMessage)decoder.decode(null, null, buf);
+        M3uaMessage msg = decoder.decode(null, new SctpMessage(0, 0, buf));
         assertEquals(M3uaMessageClass.Transfer, msg.getMessageClass());
         assertEquals(M3uaMessageType.DATA, msg.getMessageType());
-        SortedMap<Integer, ChannelBuffer> content = msg.getContent();
+        SortedMap<Integer, ByteBuf> content = msg.getContent();
         assertEquals(2, content.size());
         assertTrue(content.containsKey(512));
         assertEquals(2, content.get(512).readInt());

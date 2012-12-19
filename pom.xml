@@ -48,7 +48,7 @@
     </build>
 
     <properties>
-        <netty.version>4.0.0.Alpha1-SNAPSHOT</netty.version>
+        <netty.version>4.0.0.Alpha8</netty.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -62,17 +62,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>uk.me.lwood.sigtran</groupId>
-                <artifactId>sigtran-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.netty</groupId>
-                <artifactId>netty-buffer</artifactId>
-                <version>${netty.version}</version>
-            </dependency>
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-codec</artifactId>

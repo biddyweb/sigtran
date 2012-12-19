@@ -1,6 +1,6 @@
 package uk.me.lwood.sigtran.m3ua;
 
-import io.netty.buffer.ChannelBuffer;
+import io.netty.buffer.ByteBuf;
 
 import java.util.Collections;
 import java.util.Map;
@@ -54,7 +54,7 @@ public final class M3uaMessage {
     private final int version;
     private final M3uaMessageClass messageClass;
     private final M3uaMessageType messageType;
-    private final SortedMap<Integer, ChannelBuffer> content = new TreeMap<Integer, ChannelBuffer>();
+    private final SortedMap<Integer, ByteBuf> content = new TreeMap<Integer, ByteBuf>();
 
     public M3uaMessage(int version, M3uaMessageClass messageClass, M3uaMessageType messageType) {
         this.version = version;
@@ -76,7 +76,7 @@ public final class M3uaMessage {
 
     public int getLength() {
         int length = 8;
-        for (Map.Entry<Integer, ChannelBuffer> entry : content.entrySet()) {
+        for (Map.Entry<Integer, ByteBuf> entry : content.entrySet()) {
             int oneLength = entry.getValue().readableBytes();
             length += oneLength + 4;
             if (oneLength % 4 != 0) {
@@ -87,15 +87,15 @@ public final class M3uaMessage {
         return length;
     }
 
-    public SortedMap<Integer, ChannelBuffer> getContent() {
+    public SortedMap<Integer, ByteBuf> getContent() {
         return Collections.unmodifiableSortedMap(content);
     }
 
-    public void putTagValue(int tag, ChannelBuffer value) {
+    public void putTagValue(int tag, ByteBuf value) {
         content.put(tag, value);
     }
 
-    public void putContent(SortedMap<Integer, ChannelBuffer> content) {
+    public void putContent(SortedMap<Integer, ByteBuf> content) {
         this.content.putAll(content);
     }
 

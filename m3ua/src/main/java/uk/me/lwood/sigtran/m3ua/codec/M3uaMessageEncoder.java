@@ -1,10 +1,9 @@
 package uk.me.lwood.sigtran.m3ua.codec;
 
-import io.netty.buffer.ChannelBuffer;
-import io.netty.buffer.ChannelBuffers;
-import io.netty.channel.Channel;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.oneone.OneToOneEncoder;
+import io.netty.channel.socket.SctpMessage;
+import io.netty.handler.codec.MessageToMessageEncoder;
 
 import java.util.Map;
 import java.util.SortedMap;
@@ -17,30 +16,12 @@ import uk.me.lwood.sigtran.m3ua.M3uaMessage;
  * 
  * @author lukew
  */
-public class M3uaMessageEncoder extends OneToOneEncoder {
-    @Override
-    public Object encode(ChannelHandlerContext ctx, Channel channel, Object msg) throws Exception {
-        if (!(msg instanceof M3uaMessage))
-            return msg;
-        
-        M3uaMessage m = (M3uaMessage) msg;
-        ChannelBuffer header = ChannelBuffers.buffer(8); // , channel.getConfig().getBufferFactory()
-        encodeHeader(header, m);
-
-        SortedMap<Integer, ChannelBuffer> content = m.getContent();
-        if (content.isEmpty()) {
-            return header;
-        }
-        
-        ChannelBuffer body = ChannelBuffers.dynamicBuffer(m.getLength());
-        encodeBody(body, content);
-        return ChannelBuffers.wrappedBuffer(header, body);
-    }
+public class M3uaMessageEncoder extends MessageToMessageEncoder<M3uaMessage, SctpMessage> {
 
     /**
      * Transcode the header information from the {@link M3uaMessage} to the {@link ChannelBuffer}.
      */
-    private void encodeHeader(ChannelBuffer buf, M3uaMessage message) {
+    private void encodeHeader(ByteBuf buf, M3uaMessage message) {
         buf.writeByte(message.getVersion());
         buf.writeByte(0);
         buf.writeByte(message.getMessageClass().getId());
@@ -51,8 +32,8 @@ public class M3uaMessageEncoder extends OneToOneEncoder {
     /**
      * Transcode the body information from the {@link M3uaMessage} to the {@link ChannelBuffer}.
      */
-    private void encodeBody(ChannelBuffer buf, SortedMap<Integer, ChannelBuffer> content) {
-        for (Map.Entry<Integer, ChannelBuffer> entry : content.entrySet()) {
+    private void encodeBody(ByteBuf buf, SortedMap<Integer, ByteBuf> content) {
+        for (Map.Entry<Integer, ByteBuf> entry : content.entrySet()) {
             buf.writeShort(entry.getKey());
             int actualLength = entry.getValue().readableBytes();
             int octetLength = actualLength;
@@ -65,5 +46,20 @@ public class M3uaMessageEncoder extends OneToOneEncoder {
                 buf.writeBytes(new byte[octetLength - actualLength]);
             }
         }
+    }
+
+    @Override
+    public SctpMessage encode(ChannelHandlerContext ctx, M3uaMessage msg) throws Exception {
+        ByteBuf header = ctx.alloc().buffer(8 + msg.getLength());
+        encodeHeader(header, msg);
+
+        SortedMap<Integer, ByteBuf> content = msg.getContent();
+        if (content.isEmpty()) {
+            return new SctpMessage(0, 0, header);
+        }
+        
+        encodeBody(header, content);
+        
+        return new SctpMessage(0, 0, header);
     }
 }

@@ -2,10 +2,10 @@ package uk.me.lwood.sigtran.m3ua.codec;
 
 import static uk.me.lwood.sigtran.m3ua.exceptions.M3uaExceptionReason.*;
 
-import io.netty.buffer.ChannelBuffer;
-import io.netty.channel.Channel;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.oneone.OneToOneDecoder;
+import io.netty.channel.socket.SctpMessage;
+import io.netty.handler.codec.MessageToMessageDecoder;
 import uk.me.lwood.sigtran.m3ua.M3uaMessage;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageClass;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageType;
@@ -31,46 +31,44 @@ import uk.me.lwood.sigtran.m3ua.exceptions.M3uaException;
  * 
  * @author lukew
  */
-public class M3uaMessageDecoder extends OneToOneDecoder {
-    @Override
-    public Object decode(ChannelHandlerContext ctx, Channel channel, Object msg) throws M3uaException {
-        if (!(msg instanceof ChannelBuffer))
-            return msg;
+public class M3uaMessageDecoder extends MessageToMessageDecoder<SctpMessage, M3uaMessage> {
 
-        ChannelBuffer m = (ChannelBuffer) msg;
-        int version = m.readByte();
+    @Override
+    public M3uaMessage decode(ChannelHandlerContext ctx, SctpMessage msg) throws Exception {
+        ByteBuf payload = msg.getPayloadBuffer();
+        
+        int version = payload.readByte();
         if (version != 0x1) {
             throw new M3uaException(UNSUPPORTED_VERSION, "Unsupported version: " + version);
         }
 
-        m.readByte();
-        M3uaMessageClass messageClass = M3uaMessageClass.getById(m.readByte());
-        M3uaMessageType messageType = M3uaMessageType.getByMessageClassAndId(messageClass, m.readByte());
+        payload.skipBytes(1);
+        M3uaMessageClass messageClass = M3uaMessageClass.getById(payload.readByte());
+        M3uaMessageType messageType = M3uaMessageType.getByMessageClassAndId(messageClass, payload.readByte());
 
         M3uaMessage m3uaMsg = new M3uaMessage(version, messageClass, messageType);
 
-        int length = m.readInt() - 4;
+        int length = payload.readInt() - 4;
         int offset = 0;
         while (offset < length) {
             if (offset + length < 4)
                 throw new M3uaException(UNEXPECTED_TRAILING_BYTES, "Got unexpected trailing " + (length - offset) + " bytes");
             
-            int parameterTag = m.readShort();
-            int parameterLength = m.readShort();
+            int parameterTag = payload.readShort();
+            int parameterLength = payload.readShort();
             parameterLength -= 4;
             if (offset + parameterLength > length)
                 throw new M3uaException(INVALID_LENGTH_FIELD, "Got invalid length field in tag: " + parameterTag);
             
-            m3uaMsg.putTagValue(parameterTag, m.readSlice(parameterLength));
+            m3uaMsg.putTagValue(parameterTag, payload.readSlice(parameterLength));
             
             if (parameterLength % 4 != 0)
-                m.skipBytes(4 - (parameterLength % 4));
+                payload.skipBytes(4 - (parameterLength % 4));
             
             offset += 4 + parameterLength + (4 - (parameterLength % 4));
         }
 
         return m3uaMsg;
-
     }
 
 }

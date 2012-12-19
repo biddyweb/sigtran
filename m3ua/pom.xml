@@ -10,12 +10,9 @@
     <artifactId>sigtran-m3ua</artifactId>
     <dependencies>
         <dependency>
-            <groupId>uk.me.lwood.sigtran</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>sigtran-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-buffer</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>io.netty</groupId>

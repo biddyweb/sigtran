@@ -1,14 +1,14 @@
 package uk.me.lwood.sigtran.m3ua.codec;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertArrayEquals;
 
-import io.netty.buffer.ChannelBuffer;
-import io.netty.buffer.ChannelBuffers;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+
+import org.junit.Test;
+
 import uk.me.lwood.sigtran.m3ua.M3uaMessage;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageClass;
-import uk.me.lwood.sigtran.m3ua.codec.M3uaMessageEncoder;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageType;
 
 /**
@@ -24,7 +24,7 @@ public class M3uaMessageEncoderTest {
         short[] networkAppearance = {
             0x00, 0x00, 0x00, 0x02,
         };
-        ChannelBuffer buf = ChannelBuffers.buffer(networkAppearance.length);
+        ByteBuf buf = Unpooled.buffer(networkAppearance.length);
         for (short s : networkAppearance) {
             buf.writeByte(s);
         }
@@ -45,7 +45,7 @@ public class M3uaMessageEncoderTest {
             0x17, 0xab, 0x05, 0x85, 0x31, 0x62, 0x2c, 0x96, 0x83, 0x15, 0x67, 0xc5, 0x9b, 0x70, 0x96, 0x93,
             0xc1, 0x6a, 0xb7, 0x9a, 0x31, 0x58, 0x0b, 0xd2, 0x72, 0x45, 0x5c, 0x2e, 0x08
         };
-        buf = ChannelBuffers.buffer(payload.length);
+        buf = Unpooled.buffer(payload.length);
         for (short s : payload) {
             buf.writeByte(s);
         }
@@ -67,12 +67,12 @@ public class M3uaMessageEncoderTest {
             0x17, 0xab, 0x05, 0x85, 0x31, 0x62, 0x2c, 0x96, 0x83, 0x15, 0x67, 0xc5, 0x9b, 0x70, 0x96, 0x93,
             0xc1, 0x6a, 0xb7, 0x9a, 0x31, 0x58, 0x0b, 0xd2, 0x72, 0x45, 0x5c, 0x2e, 0x08, 0x00, 0x00, 0x00,
         };
-        buf = ChannelBuffers.buffer(expected.length);
+        buf = Unpooled.buffer(expected.length);
         for (short s : expected) {
             buf.writeByte(s);
         }
         
-        ChannelBuffer encodedForm = (ChannelBuffer)encoder.encode(null, null, msg);
+        ByteBuf encodedForm = encoder.encode(null, msg).getPayloadBuffer();
         byte[] actual = new byte[encodedForm.readableBytes()];
         encodedForm.readBytes(actual);
         assertArrayEquals(buf.array(), actual);
