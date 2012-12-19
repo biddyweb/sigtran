@@ -1,8 +1,10 @@
-package uk.me.lwood.sigtran.common.params;
+package uk.me.lwood.sigtran.common.params.impl;
 
 import io.netty.buffer.ByteBuf;
 
 import java.nio.charset.Charset;
+
+import uk.me.lwood.sigtran.common.params.Parameter;
 
 /**
  * 

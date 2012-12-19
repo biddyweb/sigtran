@@ -1,12 +1,12 @@
-package uk.me.lwood.sigtran.common.params;
+package uk.me.lwood.sigtran.common.params.impl;
 
-import io.netty.buffer.ByteBuf;
+import uk.me.lwood.sigtran.common.params.IntegerParameter;
 
 /**
  * 
  * @author lukew
  */
-public class ErrorCode implements Parameter {
+public class ErrorCode extends IntegerParameter {
     public static final int INVALID_VERSION = 0x01;
     public static final int UNSUPPORTED_MESSAGE_CLASS = 0x03;
     public static final int UNSUPPORTED_MESSAGE_TYPE = 0x04;
@@ -26,25 +26,12 @@ public class ErrorCode implements Parameter {
     public static final int INVALID_ROUTING_CONTEXT = 0x19;
     public static final int NO_CONFIGURED_AS_FOR_ASP = 0x1a;
     
-    private final int code;
-    
     public ErrorCode(int code) {
-        this.code = code;
+        super(code);
     }
 
     @Override
     public int getTag() {
         return 0xB;
     }
-    
-    @Override
-    public int getLength() {
-        return 4;
-    }
-
-    @Override
-    public void writeTo(ByteBuf buf) {
-        buf.writeInt(code);
-    }
-
 }

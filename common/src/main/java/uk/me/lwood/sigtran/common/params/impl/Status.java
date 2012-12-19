@@ -1,7 +1,8 @@
 // $Id$
 // Copyright 2012 MX Telecom Ltd
-package uk.me.lwood.sigtran.common.params;
+package uk.me.lwood.sigtran.common.params.impl;
 
+import uk.me.lwood.sigtran.common.params.Parameter;
 import io.netty.buffer.ByteBuf;
 
 /**
