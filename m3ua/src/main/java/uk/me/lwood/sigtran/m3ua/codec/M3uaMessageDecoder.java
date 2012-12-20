@@ -60,7 +60,8 @@ public class M3uaMessageDecoder extends MessageToMessageDecoder<SctpMessage, M3u
             if (offset + parameterLength > length)
                 throw new M3uaException(INVALID_LENGTH_FIELD, "Got invalid length field in tag: " + parameterTag);
             
-            m3uaMsg.putTagValue(parameterTag, payload.readSlice(parameterLength));
+            // XXX: resolve the parameter and add it
+            //m3uaMsg.putTagValue(parameterTag, payload.readSlice(parameterLength));
             
             if (parameterLength % 4 != 0)
                 payload.skipBytes(4 - (parameterLength % 4));

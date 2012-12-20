@@ -5,10 +5,10 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.socket.SctpMessage;
 import io.netty.handler.codec.MessageToMessageEncoder;
 
-import java.util.Map;
-import java.util.SortedMap;
+import java.util.List;
 
 import uk.me.lwood.sigtran.m3ua.M3uaMessage;
+import uk.me.lwood.sigtran.m3ua.params.M3uaParameter;
 
 /**
  * Assuming an {@link M3uaMessage} as input, this encoder will convert the object into a
@@ -32,16 +32,16 @@ public class M3uaMessageEncoder extends MessageToMessageEncoder<M3uaMessage, Sct
     /**
      * Transcode the body information from the {@link M3uaMessage} to the {@link ChannelBuffer}.
      */
-    private void encodeBody(ByteBuf buf, SortedMap<Integer, ByteBuf> content) {
-        for (Map.Entry<Integer, ByteBuf> entry : content.entrySet()) {
-            buf.writeShort(entry.getKey());
-            int actualLength = entry.getValue().readableBytes();
+    private void encodeBody(ByteBuf buf, List<M3uaParameter> content) {
+        for (M3uaParameter parameter : content) {
+            buf.writeShort(parameter.getTag());
+            int actualLength = parameter.getLength();
             int octetLength = actualLength;
             if (actualLength % 4 != 0) {
                 octetLength += 4 - actualLength % 4; 
             }
             buf.writeShort(actualLength + 4);
-            buf.writeBytes(entry.getValue());
+            parameter.writeTo(buf);
             if (octetLength != actualLength) {
                 buf.writeBytes(new byte[octetLength - actualLength]);
             }
@@ -53,7 +53,7 @@ public class M3uaMessageEncoder extends MessageToMessageEncoder<M3uaMessage, Sct
         ByteBuf header = ctx.alloc().buffer(8 + msg.getLength());
         encodeHeader(header, msg);
 
-        SortedMap<Integer, ByteBuf> content = msg.getContent();
+        List<M3uaParameter> content = msg.getContent();
         if (content.isEmpty()) {
             return new SctpMessage(0, 0, header);
         }

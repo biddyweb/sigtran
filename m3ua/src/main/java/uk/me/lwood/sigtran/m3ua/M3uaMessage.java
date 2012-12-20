@@ -1,11 +1,10 @@
 package uk.me.lwood.sigtran.m3ua;
 
-import io.netty.buffer.ByteBuf;
-
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.List;
+
+import uk.me.lwood.sigtran.m3ua.params.M3uaParameter;
 
 /**
  * An M3uaMessage is composed of a common fixed-length header, followed by a series of
@@ -54,7 +53,7 @@ public final class M3uaMessage {
     private final int version;
     private final M3uaMessageClass messageClass;
     private final M3uaMessageType messageType;
-    private final SortedMap<Integer, ByteBuf> content = new TreeMap<Integer, ByteBuf>();
+    private final List<M3uaParameter> content = new ArrayList<M3uaParameter>();
 
     public M3uaMessage(int version, M3uaMessageClass messageClass, M3uaMessageType messageType) {
         this.version = version;
@@ -76,30 +75,26 @@ public final class M3uaMessage {
 
     public int getLength() {
         int length = 8;
-        for (Map.Entry<Integer, ByteBuf> entry : content.entrySet()) {
-            int oneLength = entry.getValue().readableBytes();
-            length += oneLength + 4;
-            if (oneLength % 4 != 0) {
-                length += 4 - oneLength % 4;
+        for (M3uaParameter param : content) {
+            int paramLength = param.getLength();
+            length += paramLength + 4;
+            if (paramLength % 4 != 0) {
+                length += 4 - paramLength % 4;
             }
         }
 
         return length;
     }
 
-    public SortedMap<Integer, ByteBuf> getContent() {
-        return Collections.unmodifiableSortedMap(content);
+    public List<M3uaParameter> getContent() {
+        return Collections.unmodifiableList(content);
     }
 
-    public void putTagValue(int tag, ByteBuf value) {
-        content.put(tag, value);
+    public void addParameter(M3uaParameter parameter) {
+        content.add(parameter);
     }
 
-    public void putContent(SortedMap<Integer, ByteBuf> content) {
-        this.content.putAll(content);
-    }
-
-    public void removeTag(int tag) {
-        content.remove(tag);
+    public void removeParameter(M3uaParameter parameter) {
+        content.remove(parameter);
     }
 }
