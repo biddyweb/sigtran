@@ -6,7 +6,7 @@ import uk.me.lwood.sigtran.tcap.DestTransactionId;
  * 
  * @author lukew
  */
-public class Abort {
+public class Abort implements TcapMessage {
     private final DestTransactionId transactionId;
 
     private Abort(DestTransactionId transactionId) {

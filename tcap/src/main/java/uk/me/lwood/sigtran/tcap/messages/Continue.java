@@ -10,7 +10,7 @@ import uk.me.lwood.sigtran.tcap.ros.DialoguePortion;
  * 
  * @author lukew
  */
-public class Continue {
+public class Continue implements TcapMessage {
     private final OrigTransactionId origTransactionId;
     private final DestTransactionId destTransactionId;
     @Optional

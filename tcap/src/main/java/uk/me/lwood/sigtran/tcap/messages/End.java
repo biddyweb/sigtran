@@ -9,7 +9,7 @@ import uk.me.lwood.sigtran.tcap.ros.DialoguePortion;
  * 
  * @author lukew
  */
-public class End {
+public class End implements TcapMessage {
     private final DestTransactionId transactionId;
     @Optional
     private final DialoguePortion dialoguePortion;
