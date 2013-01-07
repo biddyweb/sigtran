@@ -10,6 +10,9 @@ import uk.me.lwood.sigtran.m3ua.M3uaMessage;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageClass;
 import uk.me.lwood.sigtran.m3ua.M3uaMessageType;
 import uk.me.lwood.sigtran.m3ua.exceptions.M3uaException;
+import uk.me.lwood.sigtran.m3ua.params.DefaultM3uaTag;
+import uk.me.lwood.sigtran.m3ua.params.M3uaTag;
+import uk.me.lwood.sigtran.m3ua.params.UnspecifiedM3uaTag;
 
 /**
  * Assuming a ChannelBuffer as input (which should be guaranteed by another decoder unwrapping the
@@ -54,14 +57,16 @@ public class M3uaMessageDecoder extends MessageToMessageDecoder<SctpMessage, M3u
             if (offset + length < 4)
                 throw new M3uaException(UNEXPECTED_TRAILING_BYTES, "Got unexpected trailing " + (length - offset) + " bytes");
             
-            int parameterTag = payload.readShort();
-            int parameterLength = payload.readShort();
-            parameterLength -= 4;
+            final short parameterTag = payload.readShort();
+            final int parameterLength = payload.readShort() - 4;
             if (offset + parameterLength > length)
                 throw new M3uaException(INVALID_LENGTH_FIELD, "Got invalid length field in tag: " + parameterTag);
             
-            // XXX: resolve the parameter and add it
-            //m3uaMsg.putTagValue(parameterTag, payload.readSlice(parameterLength));
+            M3uaTag tag = DefaultM3uaTag.getById(parameterTag);
+            if (tag == null) {
+                tag = new UnspecifiedM3uaTag(parameterTag);
+            }
+            m3uaMsg.addParameter(tag.getFactory().get(tag, payload, parameterLength));
             
             if (parameterLength % 4 != 0)
                 payload.skipBytes(4 - (parameterLength % 4));

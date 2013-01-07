@@ -16,7 +16,7 @@ public class ProtocolData extends M3uaParameter {
     private final int sls;
     
     public ProtocolData(int opc, int dpc, int serviceIndicator, int networkIndicator, int priority, int sls, ByteBuf data) {
-        super(M3uaTag.PROTOCOL_DATA);
+        super(DefaultM3uaTag.PROTOCOL_DATA);
         
         this.data = data;
         this.opc = opc;
