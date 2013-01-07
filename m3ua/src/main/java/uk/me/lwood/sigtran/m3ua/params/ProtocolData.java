@@ -1,13 +1,14 @@
 package uk.me.lwood.sigtran.m3ua.params;
 
 import io.netty.buffer.ByteBuf;
+import uk.me.lwood.sigtran.common.ByteBufWritable;
 
 /**
  * 
  * @author lukew
  */
 public class ProtocolData extends M3uaParameter {
-    private final ByteBuf data;
+    private final ByteBufWritable data;
     private final int opc;
     private final int dpc;
     private final int serviceIndicator;
@@ -15,7 +16,7 @@ public class ProtocolData extends M3uaParameter {
     private final int priority;
     private final int sls;
     
-    public ProtocolData(int opc, int dpc, int serviceIndicator, int networkIndicator, int priority, int sls, ByteBuf data) {
+    public ProtocolData(int opc, int dpc, int serviceIndicator, int networkIndicator, int priority, int sls, ByteBufWritable data) {
         super(DefaultM3uaTag.PROTOCOL_DATA);
         
         this.data = data;
@@ -29,7 +30,7 @@ public class ProtocolData extends M3uaParameter {
     
     @Override
     public int getLength() {
-        return 96 + data.readableBytes();
+        return 96 + data.getLength();
     }
     
     @Override
@@ -40,6 +41,6 @@ public class ProtocolData extends M3uaParameter {
         buf.writeByte(networkIndicator);
         buf.writeByte(priority);
         buf.writeByte(sls);
-        buf.writeBytes(data);
+        data.writeTo(buf);
     }
 }

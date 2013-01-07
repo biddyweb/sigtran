@@ -16,8 +16,6 @@ public abstract class M3uaParameter implements ByteBufWritable {
     public final int getTag() {
         return tag.getId();
     }
-    
-    public abstract int getLength();
 
     @Override
     public int hashCode() {
