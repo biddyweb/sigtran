@@ -55,11 +55,11 @@ public class M3uaMessageEncoder extends MessageToMessageEncoder<M3uaMessage, Sct
 
         List<M3uaParameter> content = msg.getContent();
         if (content.isEmpty()) {
-            return new SctpMessage(0, 0, header);
+            return new SctpMessage(3, 0, header);
         }
         
         encodeBody(header, content);
         
-        return new SctpMessage(0, 0, header);
+        return new SctpMessage(3, 0, header);
     }
 }
