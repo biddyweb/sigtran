@@ -8,6 +8,16 @@ import java.util.Map;
  * @author lukew
  */
 public enum DefaultM3uaTag implements M3uaTag {
+    INFO_STRING(0x0004, M3uaParameterFactory.BYTEBUF), // XXX: UTF-8 String
+    ROUTING_CONTEXT(0x0006, M3uaParameterFactory.INTEGER), // XXX: Complex type
+    DIAGNOSTIC_INFORMATION(0x0007, M3uaParameterFactory.BYTEBUF),
+    HEARTBEAT_DATA(0x0009, M3uaParameterFactory.BYTEBUF),
+    TRAFFIC_MODE_TYPE(0x000B, M3uaParameterFactory.INTEGER),
+    ERROR_CODE(0x000C, M3uaParameterFactory.INTEGER),
+    STATUS(0x000D, M3uaParameterFactory.INTEGER),
+    ASP_IDENTIFIER(0x0011, M3uaParameterFactory.INTEGER),
+    
+    
     NETWORK_APPEARANCE(0x0200, M3uaParameterFactory.INTEGER),
     USER_CAUSE(0x0204, M3uaParameterFactory.INTEGER),
     CONGESTION_INDICATIONS(0x0205, M3uaParameterFactory.INTEGER),
@@ -19,7 +29,7 @@ public enum DefaultM3uaTag implements M3uaTag {
     DESTINATION_POINT_CODE(0x020B, M3uaParameterFactory.INTEGER),
     SERVICE_INDICATORS(0x020C, M3uaParameterFactory.INTEGER),
     ORIGINATING_POINT_CODE_LIST(0x020E, M3uaParameterFactory.INTEGER),
-    PROTOCOL_DATA(0x0210, M3uaParameterFactory.INTEGER),
+    PROTOCOL_DATA(0x0210, M3uaParameterFactory.INTEGER), // XXX: Complex type
     REGISTRATION_STATUS(0x0212, M3uaParameterFactory.INTEGER),
     DEREGISTRATION_STATUS(0x0213, M3uaParameterFactory.INTEGER);
     
