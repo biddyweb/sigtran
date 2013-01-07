@@ -1,22 +1,23 @@
 package uk.me.lwood.sigtran.m3ua.params;
 
-import uk.me.lwood.sigtran.common.params.Parameter;
+import uk.me.lwood.sigtran.common.ByteBufWritable;
 
 /**
  * 
  * @author lukew
  */
-public abstract class M3uaParameter implements Parameter {
+public abstract class M3uaParameter implements ByteBufWritable {
     private final M3uaTag tag;
     
     protected M3uaParameter(M3uaTag tag) {
         this.tag = tag;
     }
     
-    @Override
     public final int getTag() {
         return tag.getId();
     }
+    
+    public abstract int getLength();
 
     @Override
     public int hashCode() {
